@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Students Zone | Richwell Colleges</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --purple: #45104f;
+        --deep: #26072f;
+        --magenta: #8d287c;
+        --pink: #c04a9c;
+        --gold: #ffc928;
+        --cream: #fff8e8;
+        --ink: #30233a;
+        --muted: #756a7b;
+      }
+      * {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: #fbf7fc;
+        color: var(--ink);
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .navbar {
+        background: linear-gradient(
+          100deg,
+          var(--deep),
+          var(--purple) 65%,
+          #65145f
+        );
+        box-shadow: 0 5px 22px #26072f30;
+      }
+      .navbar-brand {
+        font-weight: 800;
+        letter-spacing: 0.4px;
+        color: #fff !important;
+      }
+      .brand-shield {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 39px;
+        height: 39px;
+        margin-right: 9px;
+        background: var(--gold);
+        color: var(--purple);
+        font-weight: 900;
+        clip-path: polygon(50% 0, 95% 17%, 88% 72%, 50% 100%, 12% 72%, 5% 17%);
+      }
+      .nav-link {
+        color: #fff !important;
+        font-weight: 600;
+        margin-left: 8px;
+      }
+      .nav-link:hover {
+        color: var(--gold) !important;
+      }
+      .navbar-toggler {
+        border: 1px solid #ffffff90;
+      }
+      .navbar-toggler:focus {
+        box-shadow: 0 0 0 0.2rem #ffc92855;
+      }
+      .hero {
+        position: relative;
+        overflow: hidden;
+        border-radius: 22px;
+        background: linear-gradient(120deg, #31083d, #7c1e70);
+        box-shadow: 0 16px 36px #45104f28;
+      }
+      .hero img {
+        width: 100%;
+        display: block;
+        max-height: 390px;
+        object-fit: cover;
+      }
+      .hero-caption {
+        background: linear-gradient(90deg, #2b0838, #54104e);
+        color: white;
+        padding: 26px 30px;
+      }
+      .hero-caption .eyebrow {
+        color: var(--gold);
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        font-size: 0.78rem;
+      }
+      .hero-caption h1 {
+        font-weight: 900;
+        letter-spacing: -1px;
+        margin: 5px 0 8px;
+      }
+      .hero-caption p {
+        color: #f4e8f4;
+        margin: 0;
+        max-width: 720px;
+      }
+      .btn-gold {
+        background: var(--gold);
+        color: #35103d;
+        border: 0;
+        font-weight: 800;
+        border-radius: 999px;
+        padding: 11px 20px;
+      }
+      .btn-gold:hover {
+        background: #ffdc62;
+        color: #35103d;
+      }
+      .btn-outline-light {
+        border-radius: 999px;
+        font-weight: 700;
+      }
+      .section-kicker {
+        color: var(--magenta);
+        font-size: 0.76rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        font-weight: 800;
+      }
+      .section-title {
+        font-weight: 900;
+        color: var(--purple);
+      }
+      .panel {
+        background: #fff;
+        border: 1px solid #eaddec;
+        border-radius: 18px;
+        box-shadow: 0 8px 24px #45104f0d;
+      }
+      .panel-heading {
+        background: linear-gradient(100deg, var(--purple), var(--magenta));
+        color: white;
+        border-radius: 18px 18px 0 0;
+        padding: 15px 19px;
+        font-weight: 800;
+      }
+      .profile-top {
+        background: linear-gradient(135deg, #4a1054, #8d287c);
+        border-radius: 15px;
+        color: white;
+        padding: 22px;
+      }
+      .avatar {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        background: var(--gold);
+        color: var(--purple);
+        display: grid;
+        place-items: center;
+        font-size: 30px;
+        font-weight: 900;
+        border: 4px solid #ffffff80;
+      }
+      .profile-photo {
+        object-fit: cover;
+        display: block;
+      }
+      .stat {
+        background: var(--cream);
+        border: 1px solid #f4e5b7;
+        border-radius: 13px;
+        padding: 13px;
+      }
+      .stat strong {
+        display: block;
+        color: var(--purple);
+        font-size: 1.1rem;
+      }
+      .announcement {
+        border-left: 4px solid var(--gold);
+        padding: 4px 0 4px 13px;
+        margin-bottom: 17px;
+      }
+      .announcement:last-child {
+        margin-bottom: 0;
+      }
+      .announcement h6 {
+        font-weight: 800;
+        color: var(--purple);
+      }
+      .schedule-wrap {
+        overflow-x: auto;
+      }
+      .schedule {
+        min-width: 720px;
+        border-collapse: separate;
+        border-spacing: 5px;
+        width: 100%;
+      }
+      .schedule th {
+        background: #4b1457;
+        color: white;
+        padding: 12px 10px;
+        text-align: center;
+        border-radius: 8px;
+        font-size: 0.86rem;
+      }
+      .schedule td {
+        background: #fbf4fc;
+        border: 1px solid #eaddec;
+        border-radius: 9px;
+        padding: 10px;
+        vertical-align: top;
+        font-size: 0.82rem;
+      }
+      .schedule .day {
+        font-weight: 800;
+        color: var(--purple);
+        background: #f4e8f5;
+        text-align: center;
+        vertical-align: middle;
+      }
+      .class-chip {
+        border-radius: 8px;
+        padding: 9px;
+        margin-bottom: 6px;
+        background: #f8e7f4;
+        border-left: 4px solid var(--magenta);
+      }
+      .class-chip:last-child {
+        margin-bottom: 0;
+      }
+      .class-chip b {
+        display: block;
+        color: #501451;
+      }
+      .class-chip small {
+        color: #695b6c;
+      }
+      .program-card {
+        height: 100%;
+        padding: 18px;
+        border-radius: 15px;
+        background: #fff;
+        border: 1px solid #eaddec;
+        transition: 0.2s;
+      }
+      .program-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 25px #45104f16;
+      }
+      .program-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 13px;
+        background: #f8e9f5;
+        display: grid;
+        place-items: center;
+        font-size: 22px;
+        margin-bottom: 12px;
+      }
+      .program-card h5 {
+        color: var(--purple);
+        font-weight: 800;
+        font-size: 1rem;
+      }
+      .form-control,
+      .form-select {
+        border-radius: 10px;
+        padding: 11px;
+      }
+      .form-control:focus,
+      .form-select:focus {
+        border-color: var(--pink);
+        box-shadow: 0 0 0 0.2rem #c04a9c22;
+      }
+      footer {
+        background: linear-gradient(100deg, var(--deep), var(--purple));
+        color: #f9eafa;
+        padding: 24px 0;
+        margin-top: 50px;
+      }
+      .footer-mark {
+        color: var(--gold);
+        font-weight: 900;
+        letter-spacing: 1px;
+      }
+      @media (max-width: 575.98px) {
+        .hero-caption {
+          padding: 20px;
+        }
+        .hero-caption h1 {
+          font-size: 1.65rem;
+        }
+        .hero img {
+          min-height: 160px;
+          object-fit: cover;
+        }
+        .section-title {
+          font-size: 1.45rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+      <div class="container">
+        <a class="navbar-brand" href="#"
+          ><span class="brand-shield">R</span>STUDENTS ZONE</a
+        >
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNav"
+          aria-controls="mainNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#schedule">My Schedule</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#programs">Programs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#announcements">Announcements</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#student-form">Student Info</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container py-4 py-lg-5">
+      <section class="hero mb-5" aria-label="Richwell Colleges welcome banner">
+        <img
+          src="assets/richwell-school-banner.jpg"
+          alt="Richwell Colleges enrollment banner featuring the school's campus community"
+        />
+        <div class="hero-caption">
+          <div class="eyebrow">
+            One community • Every student • Every opportunity
+          </div>
+          <h1>Welcome, Richwellian!</h1>
+          <p>
+            Your campus hub for class schedules, academic updates, student
+            information, and school services.
+          </p>
+          <div class="mt-3">
+            <a class="btn btn-gold me-2" href="#schedule">View My Schedule</a
+            ><a class="btn btn-outline-light" href="#announcements"
+              >Campus Updates</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section id="dashboard" class="mb-5">
+        <div class="mb-3">
+          <div class="section-kicker">Your school at a glance</div>
+          <h2 class="section-title">Student Dashboard</h2>
+        </div>
+        <div class="row g-4">
+          <div class="col-12 col-lg-4">
+            <div class="panel p-3 h-100">
+              <div class="profile-top mb-3">
+                <div class="d-flex align-items-center gap-3">
+                  <img
+                    class="avatar profile-photo"
+                    src="assets/student-profile.jpg"
+                    alt="Student profile picture"
+                  />
+                  <div>
+                    <div class="small text-white-50">RICHWELL COLLEGES</div>
+                    <h5 class="mb-0 fw-bold">Student Profile</h5>
+                    <small>Welcome to your portal</small>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-2">
+                <span class="text-secondary small">Student name</span>
+                <div class="fw-bold">Renz Andrei Musa</div>
+              </div>
+              <div class="mb-3">
+                <span class="text-secondary small">Student ID</span>
+                <div class="fw-bold">270259</div>
+              </div>
+              <div class="stat mb-3">
+                <span class="small text-secondary">Academic program</span
+                ><strong>BSIS 1-2</strong>
+              </div>
+              <a class="btn btn-gold w-100" href="#student-form"
+                >Complete Student Information</a
+              >
+            </div>
+          </div>
+          <div class="col-12 col-lg-8" id="announcements">
+            <div class="panel h-100">
+              <div class="panel-heading">📣 Campus Announcements</div>
+              <div class="p-4">
+                <div class="announcement">
+                  <h6>School-wide Updates</h6>
+                  <p class="mb-1 text-secondary">
+                    Check this section for official announcements, campus
+                    activities, and important notices.
+                  </p>
+                  <small class="text-muted">Richwell Colleges</small>
+                </div>
+                <div class="announcement">
+                  <h6>Academic Reminders</h6>
+                  <p class="mb-1 text-secondary">
+                    Stay updated with class schedules, examination dates, and
+                    activity deadlines.
+                  </p>
+                  <small class="text-muted">Academic Services</small>
+                </div>
+                <div class="announcement">
+                  <h6>Student Services</h6>
+                  <p class="mb-1 text-secondary">
+                    Get information about enrollment, student records, and
+                    campus support services.
+                  </p>
+                  <small class="text-muted">Student Affairs</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="schedule" class="mb-5">
+        <div class="mb-3">
+          <div class="section-kicker">Your weekly timetable</div>
+          <h2 class="section-title">My Class Schedule</h2>
+          <p class="text-secondary mb-0">
+            Schedule transcribed from the timetable you provided.
+          </p>
+        </div>
+        <div class="panel p-3 p-lg-4">
+          <div class="schedule-wrap">
+            <table class="schedule">
+              <thead>
+                <tr>
+                  <th>DAY</th>
+                  <th>CLASS SCHEDULE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="day">MONDAY</td>
+                  <td>
+                    <div class="class-chip">
+                      <b>PATH Fit 1</b
+                      ><small
+                        >1:30–3:30 PM · Movement Competency Training<br />Vincent
+                        Mathew Dela Cruz</small
+                      >
+                    </div>
+                    <div class="class-chip">
+                      <b>FIL 113</b
+                      ><small
+                        >3:30–5:00 PM · Malikhaing Pagsulat<br />Michelle
+                        Pineda</small
+                      >
+                    </div>
+                    <div class="class-chip">
+                      <b>SOC SCI 113a</b
+                      ><small
+                        >5:30–7:00 PM · Readings in Philippine History<br />Josie
+                        Castillo</small
+                      >
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="day">TUESDAY</td>
+                  <td>
+                    <div class="class-chip">
+                      <b>CC 113b</b
+                      ><small
+                        >1:30–4:30 PM · Computer Programming 1<br />Francis Ian
+                        Africa</small
+                      >
+                    </div>
+                    <div class="class-chip">
+                      <b>CC 113b</b
+                      ><small
+                        >5:00–7:00 PM · Computer Programming 1<br />Francis Ian
+                        Africa</small
+                      >
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="day">WEDNESDAY</td>
+                  <td>
+                    <div class="class-chip">
+                      <b>Val Ed 113</b
+                      ><small
+                        >1:30–4:30 PM · Values Education<br />Arianne
+                        Pangilinan</small
+                      >
+                    </div>
+                    <div class="class-chip">
+                      <b>MATH 113</b
+                      ><small
+                        >5:00–6:30 PM · Mathematics in the Modern World<br />Ara
+                        Joy Angeles</small
+                      >
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="day">THURSDAY</td>
+                  <td>
+                    <div class="class-chip">
+                      <b>CC 113a</b
+                      ><small
+                        >1:30–4:30 PM · Introduction to Computing<br />Vergil
+                        Del Monte</small
+                      >
+                    </div>
+                    <div class="class-chip">
+                      <b>CC 113a</b
+                      ><small
+                        >5:00–7:00 PM · Introduction to Computing<br />Vergil
+                        Del Monte</small
+                      >
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="day">FRIDAY</td>
+                  <td>
+                    <div class="class-chip">
+                      <b>MATH 113</b
+                      ><small
+                        >1:30–3:00 PM · Mathematics in the Modern World<br />Ara
+                        Joy Angeles</small
+                      >
+                    </div>
+                    <div class="class-chip">
+                      <b>FIL 113</b
+                      ><small
+                        >3:00–4:30 PM · Malikhaing Pagsulat<br />Michelle
+                        Pineda</small
+                      >
+                    </div>
+                    <div class="class-chip">
+                      <b>SOC SCI 113a</b
+                      ><small
+                        >5:00–6:30 PM · Readings in Philippine History<br />Josie
+                        Castillo</small
+                      >
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="day">SATURDAY</td>
+                  <td>
+                    <div class="class-chip">
+                      <b>SOC SCI 113b</b
+                      ><small
+                        >1:30–4:30 PM · Understanding the Self<br />Alexis Redel
+                        Pangilinan</small
+                      >
+                    </div>
+                    <div class="class-chip">
+                      <b>NSTP 1</b
+                      ><small
+                        >5:00–8:00 PM · National Service Training Program<br />Crizar
+                        Arceo</small
+                      >
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="small text-secondary mt-3 mb-0">
+            Please verify the exact time blocks with your official timetable;
+            the source image is a compact grid.
+          </p>
+        </div>
+      </section>
+
+      <section id="programs" class="mb-5">
+        <div class="mb-3">
+          <div class="section-kicker">A portal for the whole school</div>
+          <h2 class="section-title">Academic Programs</h2>
+          <p class="text-secondary mb-0">
+            Designed to serve Richwellians across Senior High School, Tech-Voc,
+            and College.
+          </p>
+        </div>
+        <div class="row g-3">
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="program-card">
+              <div class="program-icon"></div>
+              <h5>Senior High School</h5>
+              <p class="text-secondary mb-0">
+                Student information, class schedules, announcements, and school
+                services for SHS learners.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="program-card">
+              <div class="program-icon"></div>
+              <h5>Tech-Voc</h5>
+              <p class="text-secondary mb-0">
+                A central place for technical-vocational students to access
+                their academic updates.
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-4">
+            <div class="program-card">
+              <div class="program-icon"></div>
+              <h5>College Programs</h5>
+              <p class="text-secondary mb-0">
+                Supports students from all college courses and academic
+                departments.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="student-form" class="mb-4">
+        <div class="mb-3">
+          <div class="section-kicker">Student details</div>
+          <h2 class="section-title">Student Information Form</h2>
+        </div>
+        <div class="panel">
+          <div class="panel-heading">Complete Your Information</div>
+          <div class="p-4">
+            <form id="studentForm" class="row g-3">
+              <div class="col-12 col-md-6">
+                <label class="form-label fw-semibold" for="fullName"
+                  >Full Name</label
+                ><input
+                  class="form-control"
+                  id="fullName"
+                  required
+                  placeholder="Enter your full name"
+                />
+              </div>
+              <div class="col-12 col-md-6">
+                <label class="form-label fw-semibold" for="studentId"
+                  >Student ID</label
+                ><input
+                  class="form-control"
+                  id="studentId"
+                  required
+                  placeholder="Enter your student ID"
+                />
+              </div>
+              <div class="col-12 col-md-6">
+                <label class="form-label fw-semibold" for="email"
+                  >Email Address</label
+                ><input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  required
+                  placeholder="name@example.com"
+                />
+              </div>
+              <div class="col-12 col-md-6">
+                <label class="form-label fw-semibold" for="level"
+                  >Education Level</label
+                ><select class="form-select" id="level" required>
+                  <option value="">Choose level</option>
+                  <option>Senior High School</option>
+                  <option>Tech-Voc</option>
+                  <option>College</option>
+                </select>
+              </div>
+              <div class="col-12 col-md-6">
+                <label class="form-label fw-semibold" for="program"
+                  >Academic Program / Strand</label
+                ><input
+                  class="form-control"
+                  id="program"
+                  required
+                  placeholder="Enter your program or strand"
+                />
+              </div>
+              <div class="col-12 col-md-6">
+                <label class="form-label fw-semibold" for="year"
+                  >Year Level</label
+                ><select class="form-select" id="year" required>
+                  <option value="">Choose year level</option>
+                  <option>Grade 11</option>
+                  <option>Grade 12</option>
+                  <option>First Year</option>
+                  <option>Second Year</option>
+                  <option>Third Year</option>
+                  <option>Fourth Year</option>
+                  <option>Fifth Year</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <button class="btn btn-gold w-100" type="submit">
+                  Submit Student Information
+                </button>
+                <p
+                  id="formMessage"
+                  class="text-success mt-3 mb-0"
+                  role="status"
+                  aria-live="polite"
+                ></p>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="container">
+        <div class="footer-mark">STUDENTS ZONE</div>
+        <div>Richwell Colleges · One community, one portal.</div>
+        <small class="text-white-50">© 2026 Students Zone</small>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document
+        .getElementById("studentForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          if (!this.checkValidity()) {
+            this.reportValidity();
+            return;
+          }
+          const name = document.getElementById("fullName").value.trim();
+          document.getElementById("formMessage").textContent =
+            "Thank you, " +
+            name +
+            ". Your information has been entered for this demo.";
+          this.reset();
+        });
+    </script>
+  </body>
+</html>
+0.
